@@ -4,9 +4,9 @@ import {
   increment,
   incrementByAmount,
   reset,
-} from "./features/counter/counterSlice";
+} from "./features/slices/counterSlice";
 import { useState } from "react";
-import { change } from "./features/counter/nameSlice";
+import { change } from "./features/slices/nameSlice";
 
 function App() {
   const [amount, setAmount] = useState();
