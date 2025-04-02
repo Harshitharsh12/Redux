@@ -6,10 +6,13 @@ import {
   reset,
 } from "./features/counter/counterSlice";
 import { useState } from "react";
+import { change } from "./features/counter/nameSlice";
 
 function App() {
   const [amount, setAmount] = useState();
+  const [newName, setNewName] = useState("");
   const count = useSelector((state) => state.counter.value);
+  const name = useSelector((state) => state.name.value);
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
@@ -23,6 +26,9 @@ function App() {
   };
   const incByAmount = () => {
     dispatch(incrementByAmount(amount));
+  };
+  const handleName = () => {
+    dispatch(change(newName));
   };
   return (
     <div className="counter">
@@ -49,6 +55,19 @@ function App() {
       />
       <button className="btn" onClick={incByAmount}>
         IncByAmount
+      </button>
+      <h1>Name:{name}</h1>
+      <input
+        className="btn"
+        type="text"
+        value={newName}
+        placeholder="Enter New Name:"
+        onChange={(e) => {
+          setNewName(e.target.value);
+        }}
+      />
+      <button className="btn" onClick={handleName}>
+        Change Name
       </button>
     </div>
   );
